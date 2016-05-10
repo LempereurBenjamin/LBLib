@@ -31,6 +31,7 @@ final public class WavPlayer {
             if(file.exists()) {
                 AudioInputStream ais = AudioSystem.getAudioInputStream(file);
                 _clip.open(ais);
+                _clip.loop(Clip.LOOP_CONTINUOUSLY);
             }
             else
                 throw new RuntimeException("WavPlayer: file not found: " + filepath);
@@ -48,14 +49,6 @@ final public class WavPlayer {
     }
 
     /**
-     * Method to read the file continuously.
-     *
-     */
-    public static void loop() {
-        _clip.loop(Clip.LOOP_CONTINUOUSLY);
-    }
-
-    /**
      * Method to stop the reading.
      *
      */
@@ -68,6 +61,14 @@ final public class WavPlayer {
      *
      */
     public static void replay() {
+        _clip.start();
+    }
+
+    /**
+     * Method to replay the wav file at the beginning.
+     *
+     */
+    public static void playAgain() {
         _clip.setFramePosition(0);
         _clip.start();
     }
