@@ -54,6 +54,15 @@ final public class WavPlayer {
      */
     public static void stop() {
         _clip.stop();
+        _clip.setFramePosition(0);
+    }
+
+    /**
+     * Method to stop the reading and keep the position.
+     *
+     */
+    public static void pause() {
+        _clip.stop();
     }
 
     /**
