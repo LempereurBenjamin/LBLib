@@ -2,6 +2,6 @@ package login;
 
 public class UnknownLoginPasswordException extends Exception {
     UnknownLoginPasswordException() {
-        super("Missing Login or Password.");
+        super("Login ou mot de passe manquant");
     }
 }

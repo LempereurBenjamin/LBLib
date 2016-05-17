@@ -7,7 +7,13 @@ abstract class Validate {
         this._caracteresValides = null;
     }
 
-    boolean isValid(String s) {
+    public Validate(String _caracteresValides) {
+        this._caracteresValides = _caracteresValides;
+    }
+
+    abstract String getCaracteresValides();
+
+    public boolean isValid(String s) {
         boolean test = false;
         for(char ch: s.toCharArray()) {
             for(char verif: _caracteresValides.toCharArray()) {

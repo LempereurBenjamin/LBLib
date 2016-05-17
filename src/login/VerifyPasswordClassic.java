@@ -31,6 +31,10 @@ abstract class VerifyPasswordClassic extends Validate implements Verify {
         return _caracteresValidesTempo;
     }
 
+    String getCaracteresValides() {
+        return buildCaracteresValides();
+    }
+
     boolean Verify(String l, String p) throws UnknownLoginPasswordException, InvalidLoginPasswordException, PasswordNotFoundException {
         if(Objects.equals(l, "") || Objects.equals(p, "")) {
             throw new UnknownLoginPasswordException();
@@ -61,4 +65,10 @@ abstract class VerifyPasswordClassic extends Validate implements Verify {
     }
 
     abstract String findPwd(String l) throws InvalidLoginPasswordException, UnknownLoginPasswordException, PasswordNotFoundException;
+
+    String get_login() { return _login; }
+
+    String get_password() {
+        return _password;
+    }
 }

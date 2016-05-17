@@ -1,8 +1,5 @@
 package login.guis;
-import login.InvalidLoginPasswordException;
-import login.PasswordNotFoundException;
-import login.UnknownLoginPasswordException;
-import login.VerifyPasswordClassicHash;
+import login.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -15,7 +12,7 @@ public class DialLogin extends Dialog implements  ActionListener, WindowListener
     private Hashtable tp = new Hashtable<>();
 
     public DialLogin(Frame parent, Hashtable logins) {
-        super(parent, "Login", true);
+        super(parent, "Hospital - Login", true);
         Panel user = new Panel();
         user.setLayout(new FlowLayout());
         Panel pass = new Panel();
@@ -59,7 +56,7 @@ public class DialLogin extends Dialog implements  ActionListener, WindowListener
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
                     try {
-                        new VerifyPasswordClassicHash(tp, _username.getText(), _password.getText());
+                        new VerifyPasswordClassicHashSecure(tp, _username.getText(), _password.getText());
                         dispose();
                     } catch (InvalidLoginPasswordException | UnknownLoginPasswordException | PasswordNotFoundException e1) {
                         e1.printStackTrace();
@@ -77,7 +74,7 @@ public class DialLogin extends Dialog implements  ActionListener, WindowListener
             public void keyReleased(KeyEvent e) {}
         };
 
-        //Event to select the content of a JTextField when clicked (for each textfield on the dialog)
+        //Evenement (Lambda) permettant de sélectionner le contenu d'un textfield lorsque l'on clique dessus (version globale a tous les textfield)
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addPropertyChangeListener("permanentFocusOwner", evt -> {
             if(evt.getNewValue() instanceof TextField) {
                 javax.swing.SwingUtilities.invokeLater(() -> {
@@ -99,7 +96,7 @@ public class DialLogin extends Dialog implements  ActionListener, WindowListener
     public void actionPerformed(ActionEvent e) {
         if(Objects.equals(e.getActionCommand(), "Enter")) {
             try {
-                new VerifyPasswordClassicHash(tp, _username.getText(), _password.getText());
+                new VerifyPasswordClassicHashSecure(tp, _username.getText(), _password.getText());
                 dispose();
             } catch (InvalidLoginPasswordException | UnknownLoginPasswordException | PasswordNotFoundException e1) {
                 //e1.printStackTrace();

@@ -1,7 +1,7 @@
 package login;
 
 public class InvalidLoginPasswordException extends Exception {
-    InvalidLoginPasswordException() {
-        super("Login ou Password malformed.");
+    public InvalidLoginPasswordException() {
+        super("Login ou mot de passe mal formé");
     }
 }
