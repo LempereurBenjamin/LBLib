@@ -9,7 +9,7 @@ import java.util.Locale;
 /**
  * <b>FormattedDate is a class used to get formatted dates.</b>
  *
- * @author Lempereur Rocca
+ * @author Lempereur
  *
  * @version 1.0
  */

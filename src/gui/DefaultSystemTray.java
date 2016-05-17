@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * <b>LogFileBean is a class used to manage a System Tray.</b>
  *
- * @author Lempereur Rocca
+ * @author Lempereur
  *
  *
  * @version 1.0

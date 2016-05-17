@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 /**
  * <b>LogFileBean is a Javabean used to manage a log file.</b>
  *
- * @author Lempereur Rocca
+ * @author Lempereur
  *
  * @see Serializable
  *
