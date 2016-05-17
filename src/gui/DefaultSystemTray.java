@@ -23,6 +23,14 @@ public class DefaultSystemTray {
     private PopupMenu _trayMenu;
 
     /**
+     * The custom System Tray.
+     *
+     * @see DefaultSystemTray#DefaultSystemTray()
+     * @see DefaultSystemTray#DefaultSystemTray(Image, String)
+     */
+    private TrayIcon _trayIcon;
+
+    /**
      * The list of the items in the menu.
      *
      * @see DefaultSystemTray#DefaultSystemTray()
@@ -40,6 +48,7 @@ public class DefaultSystemTray {
         if(SystemTray.isSupported()) {
             _trayMenu = new PopupMenu();
             _menuList = new ArrayList<>();
+            _trayIcon = null;
         }
         else
             throw new RuntimeException("SystemTray: SystemTray is not supported");
@@ -60,11 +69,11 @@ public class DefaultSystemTray {
         if(SystemTray.isSupported()) {
             _trayMenu = new PopupMenu();
             _menuList = new ArrayList<>();
-            TrayIcon trayIcon = new TrayIcon(icone, caption, _trayMenu);
-            trayIcon.setImageAutoSize(true);
+            _trayIcon = new TrayIcon(icone, caption, _trayMenu);
+            _trayIcon.setImageAutoSize(true);
             SystemTray tray = SystemTray.getSystemTray();
             try {
-                tray.add(trayIcon);
+                tray.add(_trayIcon);
             }
             catch(AWTException ex) {
                 ex.printStackTrace();
@@ -87,11 +96,11 @@ public class DefaultSystemTray {
      *          Text of the Tray.
      */
     public void create(Image icone, String caption) {
-        TrayIcon trayIcon = new TrayIcon(icone, caption, _trayMenu);
-        trayIcon.setImageAutoSize(true);
+        _trayIcon = new TrayIcon(icone, caption, _trayMenu);
+        _trayIcon.setImageAutoSize(true);
         SystemTray tray = SystemTray.getSystemTray();
         try {
-            tray.add(trayIcon);
+            tray.add(_trayIcon);
         }
         catch(AWTException ex) {
             ex.printStackTrace();
@@ -133,5 +142,16 @@ public class DefaultSystemTray {
      */
     public void remove(String name) {
         _menuList.stream().filter(item -> Objects.equals(item.getLabel(), name)).forEach(item -> _trayMenu.remove(item));
+    }
+
+    /**
+     * Method to remove all the tray.
+     * <p>
+     *     Use to remove all the tray.
+     * </p>
+     */
+    public void removeAll() {
+        SystemTray tray = SystemTray.getSystemTray();
+        tray.remove(_trayIcon);
     }
 }
